@@ -55,6 +55,7 @@ public class AgentJPanel extends JPanel{
 
             }
         }); */
+      System.out.println("test git adam");
 
     }
 }
