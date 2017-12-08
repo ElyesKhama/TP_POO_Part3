@@ -12,14 +12,18 @@ public class Agent {
         listUser = new ArrayList<User>();
     }
 
-    public void addUser(String pseudo) throws IOException {
+    public void addUser(String pseudo, int i) throws IOException {
         if (this.unicityPseudo(pseudo)) {
 
             //Gestion User
             start = true;
-            User user = new User(pseudo);
+            User user = new User(pseudo, i);
             listUser.add(user);
             System.out.println("Utilisateur : "+pseudo +" bien crée");
+
+            user.sendMessageBroadcast();
+
+            user.receiveMessage();
 
 
         }
