@@ -7,11 +7,9 @@ import java.util.ArrayList;
 public class Agent {
 
     private ArrayList<User> listUser;
-    private DatagramSocket socket;
     public static boolean start = false;
-    public Agent() throws SocketException {
+    public Agent() {
         listUser = new ArrayList<User>();
-        socket = new DatagramSocket();
     }
 
     public void addUser(String pseudo) throws IOException {
@@ -23,13 +21,7 @@ public class Agent {
             listUser.add(user);
             System.out.println("Utilisateur : "+pseudo +" bien crée");
 
-            // COM
-            String data = pseudo ;
-            socket.setBroadcast(true);
-            InetAddress address = InetAddress.getByName("255.255.255.255"); //mettre l'adresse de broadcast directement
-            DatagramPacket packet = new DatagramPacket(data.getBytes(),
-                    data.getBytes().length, address, 45045);
-            socket.send(packet);
+
         }
         else
         {

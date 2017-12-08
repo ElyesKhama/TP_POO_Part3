@@ -18,11 +18,7 @@ public class Main {
 
             @Override
             public void run() {
-                try {
-                    agent = new Agent();
-                } catch (SocketException e) {
-                    e.printStackTrace();
-                }
+                agent = new Agent();
                 AgentFrame game = new AgentFrame(agent);
                 game.setVisible(true);
             }
