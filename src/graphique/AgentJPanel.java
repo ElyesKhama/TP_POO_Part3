@@ -11,15 +11,19 @@ import java.io.IOException;
 public class AgentJPanel extends JPanel{
 
     private JButton ajoutButton;
-  //  private JButton changeButton;
+    //  private JButton changeButton;
     private JTextField textFieldPseudo;
+    private JLabel label_liste;
 
     public AgentJPanel(Agent agent) {
         textFieldPseudo = new JTextField("Entrez pseudo");
         ajoutButton = new JButton("Ajouter utilisateur");
+        label_liste = new JLabel("Liste des utilisateurs présents :");
+
         //changeButton = new JButton("Changer pseudo");
         this.add(textFieldPseudo);
         this.add(ajoutButton);
+        this.add(label_liste);
         this.setVisible(true);
 
 
@@ -27,25 +31,21 @@ public class AgentJPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 try {
-                    agent.addUser(textFieldPseudo.getText());
+                    if(textFieldPseudo.getText().equals("user1")) {
+                        agent.addUser(textFieldPseudo.getText(), 1);
+                    }
+                    else {
+                        agent.addUser(textFieldPseudo.getText(), 2);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 agent.printAllUser();
 
-                while (agent.start) {
-                    System.out.println("start activated");
-                    System.out.println("start : >>> " + agent.start);
-
-                    try {
-                        agent.getUser().receiveMessage();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
         });
+
+
 
       /*  changeButton.addActionListener(new ActionListener() {
             @Override
@@ -55,7 +55,5 @@ public class AgentJPanel extends JPanel{
 
             }
         }); */
-      System.out.println("test git adam");
-
     }
 }
